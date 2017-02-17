@@ -11,9 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'hello'
-                node(label: 'ubuntu1604') {
-                    sh 'echo "LABEL is: $LABEL"'
-                }
+                sh 'echo "LABEL is: $LABEL"'
             }
         }
     }
