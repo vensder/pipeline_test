@@ -13,7 +13,9 @@ pipeline {
                 slackSend (
                     channel: '#devops', 
                     color: '#439FE0', 
-                    message: "started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", 
+                    message: "started ${env.JOB_NAME} \
+                        ${env.BUILD_NUMBER} \
+                        (<${env.BUILD_URL}|Open>)", 
                     teamDomain: 'ehrworks', 
                     tokenCredentialId: '7c93fef5-8eee-4c70-9f39-31fb244a3cd5'
                 )
