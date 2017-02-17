@@ -15,6 +15,7 @@ pipeline {
                 sh 'echo "HOME is: $HOME"'
                 sh 'echo "PWD is: $(pwd)"'
                 sh 'echo "df is: $(df -h)"'
+                sh 'echo "printenv is: $(printenv)"'
             }
         }
     }
