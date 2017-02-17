@@ -1,8 +1,8 @@
 def slack_message = "\
 started ${env.JOB_NAME} \
 ${env.BUILD_NUMBER} \
-(<${env.BUILD_URL}|Open>)\n
-<${env.RUN_DISPLAY_URL}|RUN_DISPLAY_URL>
+(<${env.BUILD_URL}|Open>) \
+\\n<${env.RUN_DISPLAY_URL}|RUN_DISPLAY_URL>
 "
 
 pipeline {
