@@ -12,6 +12,9 @@ pipeline {
             steps {
                 echo 'hello'
                 sh 'echo "LABEL is: $LABEL"'
+                sh 'echo "HOME is: $HOME"'
+                sh 'echo "PWD is: $(pwd)"'
+                sh 'echo "df is: $(df -h)"'
             }
         }
     }
