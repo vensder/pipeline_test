@@ -19,7 +19,6 @@ pipeline {
         stage('Checkout') {
             def allBranches = scm.branches
             def gitBranch = scm.branches[0].name
-        }
             steps {
                 checkout(
                     [
