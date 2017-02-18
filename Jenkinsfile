@@ -17,6 +17,9 @@ pipeline {
  //   }
     stages {
         stage('Checkout') {
+            def allBranches = scm.branches
+            def gitBranch = scm.branches[0].name
+        }
             steps {
                 checkout(
                     [
@@ -33,8 +36,6 @@ pipeline {
                 )
                 echo "Env vars is: ${env.NODE_NAME}, ${env.BRANCH_NAME}, ${env.GIT_URL}"
                 sh 'echo "printenv is: $(printenv)"'
-                def allBranches = scm.branches
-                def gitBranch = scm.branches[0].name
                 echo allBranches
                 echo gitBranch
             }
