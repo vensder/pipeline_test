@@ -26,7 +26,7 @@ pipeline {
                     teamDomain: slackParams.teamDomain, 
                     tokenCredentialId: slackParams.tokenCredentialId
                 )
-                echo "${env.NODE_NAME}, ${env.GIT_BRANCH}, ${env.GIT_URL}"
+                echo (${env.NODE_NAME}, ${env.GIT_BRANCH}, ${env.GIT_URL})
                 sh 'echo "LABEL is: $LABEL"'
                 sh 'echo "NODE_LABELS is: $NODE_LABELS"'
                 sh 'echo "hostname is $(hostname)"'
