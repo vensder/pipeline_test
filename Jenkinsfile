@@ -71,6 +71,7 @@ pipeline {
         }
     }
 }
+}
 
 catch(err) {
     stage 'Send Notification' 
