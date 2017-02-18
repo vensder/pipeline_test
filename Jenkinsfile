@@ -13,9 +13,9 @@ pipeline {
             label 'ubuntu1604'
         }
     }
-    environment {
-        LABEL = 'ubuntu1604'
-    }
+ //   environment {
+ //       LABEL = 'ubuntu1604'
+ //   }
     stages {
         stage('Checkout') {
             steps {
