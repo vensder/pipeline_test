@@ -9,6 +9,7 @@ def allBranches = scm.branches
 def gitBranch = scm.branches[0].name
 
 try {
+
 pipeline {
     agent {
         label {
@@ -71,9 +72,9 @@ pipeline {
         }
     }
 }
-}
 
-catch(err) {
+} catch(err) {
+    echo "Error handled"
     stage 'Send Notification' 
     slackSend (
         channel: '#devops', 
