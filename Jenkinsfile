@@ -31,11 +31,12 @@ pipeline {
                         ]
                     ]
                 )
-                print "Env vars is: ${env.NODE_NAME}, ${env.BRANCH_NAME}, ${env.GIT_URL}"
-                print currentBuild.displayName
-                print currentBuild
-                print currentBuild.result
+                echo "Env vars is: ${env.NODE_NAME}, ${env.BRANCH_NAME}, ${env.GIT_URL}"
                 sh 'echo "printenv is: $(printenv)"'
+                def allBranches = scm.branches
+                def gitBranch = scm.branches[0].name
+                echo allBranches
+                echo gitBranch
             }
         }
         stage('Build') {
