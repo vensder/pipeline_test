@@ -1,9 +1,6 @@
-def slack_message = "\
-Started ${env.JOB_NAME} \
-${env.BUILD_NUMBER} \
-(<${env.BUILD_URL}|Open>)" + "\n" +
-"<${env.RUN_DISPLAY_URL}|Pipeline details>" + "\n" +
-"<${env.JOB_DISPLAY_URL}|Pipeline activity>"
+def slack_message = "Started ${env.JOB_NAME} <${env.BUILD_URL}|${env.BUILD_NUMBER}>" + "\n" +
+            "<${env.RUN_DISPLAY_URL}|Pipeline details>" + "\n" +
+            "<${env.JOB_DISPLAY_URL}|Pipeline activity>"
 
 pipeline {
     agent {
