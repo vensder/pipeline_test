@@ -32,6 +32,7 @@ pipeline {
                         ]
                     ]
                 )
+                print "Env vars is: ${env_vars}"
             }
         }
         stage('Build') {
@@ -45,7 +46,6 @@ pipeline {
                     teamDomain: slackParams.teamDomain, 
                     tokenCredentialId: slackParams.tokenCredentialId
                 )
-                print env_vars
                 sh 'echo "LABEL is: $LABEL"'
                 sh 'echo "NODE_LABELS is: $NODE_LABELS"'
                 sh 'echo "hostname is $(hostname)"'
