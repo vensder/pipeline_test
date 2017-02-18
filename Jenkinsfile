@@ -9,6 +9,7 @@ def allBranches = scm.branches
 def gitBranch = scm.branches[0].name
 
 pipeline {
+try {
     agent {
         label {
             label 'ubuntu1604'
@@ -61,7 +62,7 @@ pipeline {
     }
     post {
         failure {
-                slackSend (
+            slackSend (
                 channel: '#devops', 
                 color: 'danger', 
                 message: "Pipline failed", 
@@ -69,6 +70,19 @@ pipeline {
                 tokenCredentialId: slackParams.tokenCredentialId
             )
         }
+    }
+}
+catch(err) {
+    stage 'Send Notification' 
+    slackSend (
+        channel: '#devops', 
+        color: 'danger', 
+        message: "Pipline failed. Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) has had an error.", 
+        teamDomain: slackParams.teamDomain, 
+        tokenCredentialId: slackParams.tokenCredentialId
+    )
+    currentBuild.result = 'FAILURE' 
+
     }
 }
 
