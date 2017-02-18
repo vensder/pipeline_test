@@ -33,7 +33,7 @@ pipeline {
                     ]
                 )
                 print "Env vars is: ${env_vars}"
-                print env.GIT_BRANCH
+                print env.BRANCH_NAME
             }
         }
         stage('Build') {
