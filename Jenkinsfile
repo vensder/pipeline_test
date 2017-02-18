@@ -17,21 +17,22 @@ pipeline {
         LABEL = 'ubuntu1604'
     }
     stages {
-        stage('Checkout'){
-            checkout(
-                [
-                    $class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
-                    doGenerateSubmoduleConfigurations: false, 
-                    extensions: [], 
-                    submoduleCfg: [], 
-                    userRemoteConfigs: [
-                        [credentialsId: 'f51f83e4-f521-40fb-8aa6-6fce2ddf22d8', 
-                        url: 'git@github.com:vensder/pipeline_test.git']
+        stage('Checkout') {
+            steps {
+                checkout(
+                    [
+                        $class: 'GitSCM', 
+                        branches: [[name: '*/master']], 
+                        doGenerateSubmoduleConfigurations: false, 
+                        extensions: [], 
+                        submoduleCfg: [], 
+                        userRemoteConfigs: [
+                            [credentialsId: 'f51f83e4-f521-40fb-8aa6-6fce2ddf22d8', 
+                            url: 'git@github.com:vensder/pipeline_test.git']
+                        ]
                     ]
-                ]
-            )
-
+                )
+            }
         }
         stage('Build') {
             steps {
