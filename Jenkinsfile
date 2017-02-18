@@ -18,7 +18,6 @@ pipeline {
         LABEL = 'ubuntu1604'
     }
     stages {
-        try {
         stage('Checkout') {
             steps {
                 checkout(
@@ -36,8 +35,19 @@ pipeline {
                 )
                 echo "Env vars is: ${env.NODE_NAME}, ${env.BRANCH_NAME}, ${env.GIT_URL}"
                 sh 'echo "printenv is: $(printenv)"'
-                echo allBranches
-                echo gitBranch
+                try {
+                    echo allBranches
+                } catch(err) {
+                    stage 'Send Notification' 
+                    slackSend (
+                        channel: '#devops', 
+                        color: 'danger', 
+                        message: "Pipline failed. Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) has had an error.", 
+                        teamDomain: slackParams.teamDomain, 
+                        tokenCredentialId: slackParams.tokenCredentialId
+                    )
+                    currentBuild.result = 'FAILURE' 
+                }   
             }
         }
         stage('Build') {
@@ -59,18 +69,6 @@ pipeline {
                 sh 'echo "df is: $(df -h)"'
             }
         }
-    } catch(err) {
-    stage 'Send Notification' 
-    slackSend (
-        channel: '#devops', 
-        color: 'danger', 
-        message: "Pipline failed. Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) has had an error.", 
-        teamDomain: slackParams.teamDomain, 
-        tokenCredentialId: slackParams.tokenCredentialId
-    )
-    currentBuild.result = 'FAILURE' 
-
-    }   
     }
     post {
         failure {
