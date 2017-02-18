@@ -17,15 +17,15 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                echo slackParams.teamDomain
+                echo slackParams.tokenCredentialId
                 slackSend (
                     channel: '#devops', 
                     color: '#439FE0', 
                     message: slack_message, 
-                    teamDomain: 'ehrworks', 
-                    tokenCredentialId: '7c93fef5-8eee-4c70-9f39-31fb244a3cd5'
+                    teamDomain: slackParams.teamDomain, 
+                    tokenCredentialId: slackParams.tokenCredentialId
                 )
-                echo slackParams.teamDomain()
-                echo slackParams.tokenCredentialId
                 sh 'echo "LABEL is: $LABEL"'
                 sh 'echo "HOME is: $HOME"'
                 sh 'echo "PWD is: $(pwd)"'
