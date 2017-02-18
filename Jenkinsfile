@@ -4,7 +4,9 @@
 
 def slack_message = "Started ${env.JOB_NAME} <${env.BUILD_URL}|#${env.BUILD_NUMBER}>" + "\n" +
             "<${env.RUN_DISPLAY_URL}|Pipeline details>" + "\n" +
-            "<${env.JOB_DISPLAY_URL}|Pipeline activity>"
+            "<${env.JOB_DISPLAY_URL}|Pipeline activity>"          
+def allBranches = scm.branches
+def gitBranch = scm.branches[0].name
 
 pipeline {
     agent {
@@ -17,8 +19,6 @@ pipeline {
  //   }
     stages {
         stage('Checkout') {
-            def allBranches = scm.branches
-            def gitBranch = scm.branches[0].name
             steps {
                 checkout(
                     [
