@@ -59,4 +59,19 @@ pipeline {
             }
         }
     }
+    post {
+        failure {
+                slackSend (
+                channel: '#devops', 
+                color: 'danger', 
+                message: "Pipline failed", 
+                teamDomain: slackParams.teamDomain, 
+                tokenCredentialId: slackParams.tokenCredentialId
+            )
+        }
+    }
 }
+
+
+
+
