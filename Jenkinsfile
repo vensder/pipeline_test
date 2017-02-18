@@ -5,7 +5,6 @@
 def slack_message = "Started ${env.JOB_NAME} <${env.BUILD_URL}|#${env.BUILD_NUMBER}>" + "\n" +
             "<${env.RUN_DISPLAY_URL}|Pipeline details>" + "\n" +
             "<${env.JOB_DISPLAY_URL}|Pipeline activity>"
-def env_vars = "${env.NODE_NAME}, ${env.GIT_BRANCH}, ${env.GIT_URL}"
 
 pipeline {
     agent {
@@ -32,8 +31,11 @@ pipeline {
                         ]
                     ]
                 )
-                print "Env vars is: ${env_vars}"
-                print env.BRANCH_NAME
+                print "Env vars is: ${env.NODE_NAME}, ${env.BRANCH_NAME}, ${env.GIT_URL}"
+                print currentBuild.displayName
+                print currentBuild
+                print currentBuild.result
+                sh 'echo "printenv is: $(printenv)"'
             }
         }
         stage('Build') {
@@ -53,7 +55,6 @@ pipeline {
                 sh 'echo "HOME is: $HOME"'
                 sh 'echo "PWD is: $(pwd)"'
                 sh 'echo "df is: $(df -h)"'
-                sh 'echo "printenv is: $(printenv)"'
             }
         }
     }
