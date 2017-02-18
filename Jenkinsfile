@@ -26,9 +26,10 @@ pipeline {
                     teamDomain: slackParams.teamDomain, 
                     tokenCredentialId: slackParams.tokenCredentialId
                 )
+                echo "${env}"
                 sh 'echo "LABEL is: $LABEL"'
                 sh 'echo "NODE_LABELS is: $NODE_LABELS"'
-                sh 'echo "hostname is $(hostname)'
+                sh 'echo "hostname is $(hostname)"'
                 sh 'echo "HOME is: $HOME"'
                 sh 'echo "PWD is: $(pwd)"'
                 sh 'echo "df is: $(df -h)"'
