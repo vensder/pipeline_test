@@ -1,4 +1,4 @@
-def slack_message = "Started ${env.JOB_NAME} <${env.BUILD_URL}|${env.BUILD_NUMBER}>" + "\n" +
+def slack_message = "Started ${env.JOB_NAME} <${env.BUILD_URL}|#${env.BUILD_NUMBER}>" + "\n" +
             "<${env.RUN_DISPLAY_URL}|Pipeline details>" + "\n" +
             "<${env.JOB_DISPLAY_URL}|Pipeline activity>"
 
