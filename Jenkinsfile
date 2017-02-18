@@ -4,6 +4,7 @@
 def slack_message = "Started ${env.JOB_NAME} <${env.BUILD_URL}|#${env.BUILD_NUMBER}>" + "\n" +
             "<${env.RUN_DISPLAY_URL}|Pipeline details>" + "\n" +
             "<${env.JOB_DISPLAY_URL}|Pipeline activity>"
+def env_vars = "${env.NODE_NAME}, ${env.GIT_BRANCH}, ${env.GIT_URL}"
 
 pipeline {
     agent {
@@ -26,9 +27,7 @@ pipeline {
                     teamDomain: slackParams.teamDomain, 
                     tokenCredentialId: slackParams.tokenCredentialId
                 )
-                print "${env.NODE_NAME}"
-                print "${env.GIT_BRANCH}"
-                print "${env.GIT_URL}"
+                print env_vars
                 sh 'echo "LABEL is: $LABEL"'
                 sh 'echo "NODE_LABELS is: $NODE_LABELS"'
                 sh 'echo "hostname is $(hostname)"'
