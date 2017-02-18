@@ -24,7 +24,8 @@ pipeline {
                     teamDomain: 'ehrworks', 
                     tokenCredentialId: '7c93fef5-8eee-4c70-9f39-31fb244a3cd5'
                 )
-                echo slackParams.team()
+                echo slackParams.teamDomain()
+                echo slackParams.tokenCredentialId
                 sh 'echo "LABEL is: $LABEL"'
                 sh 'echo "HOME is: $HOME"'
                 sh 'echo "PWD is: $(pwd)"'
