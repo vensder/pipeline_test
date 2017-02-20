@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-@Library('jenkins_scripts')
+@Library('jenkins_scripts') _
 
 def slack_message = "Started ${env.JOB_NAME} <${env.BUILD_URL}|#${env.BUILD_NUMBER}>" + "\n" +
             "<${env.RUN_DISPLAY_URL}|Pipeline details>" + "\n" +
@@ -20,7 +20,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                sendToSlack.message 'Chechout stage'
+                sendToSlack.message
                 echo sendToSlack.team
                 checkout(
                     [
