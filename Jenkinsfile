@@ -21,7 +21,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 sendToSlack()
-//                sendToSlack('Checkout stage', '#devops', '#000000')
+                sendToSlack('Checkout stage', '#devops', '#ABCDEF')
                 checkout(
                     [
                         $class: 'GitSCM', 
@@ -61,6 +61,9 @@ pipeline {
         }
     }
     post {
+        success {
+            sendToSlack ('Pipeline finished successfully','#devops', 'good')
+        }
         failure {
             slackSend (
                 channel: '#devops', 
