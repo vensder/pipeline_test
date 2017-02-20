@@ -20,7 +20,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                sendToSlack('Checkout stage', '#devops', '#000000')
+                sendToSlack()
+//                sendToSlack('Checkout stage', '#devops', '#000000')
                 checkout(
                     [
                         $class: 'GitSCM', 
