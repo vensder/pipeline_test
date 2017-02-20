@@ -75,7 +75,7 @@ pipeline {
 
 } catch(err) {
     echo "Error ${err} handled"
-    stages {
+/*    stages {
         stage('Send Notification') { 
             slackSend (
                 channel: '#devops', 
@@ -86,6 +86,7 @@ pipeline {
             )
         }
     }
+*/
     currentBuild.result = 'FAILURE' 
 }  
 
