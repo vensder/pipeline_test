@@ -20,7 +20,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                sendToSlack.message('Chechout stage')
+                //sendToSlack.message('Chechout stage')
+                echo sendToSlack.team
                 checkout(
                     [
                         $class: 'GitSCM', 
