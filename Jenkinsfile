@@ -20,8 +20,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo sendToSlack.chan
-                //sendToSlack.message 'Checkout Stage'
+                sendToSlack 'Checkout Stage'
                 echo sendToSlack.team
                 checkout(
                     [
