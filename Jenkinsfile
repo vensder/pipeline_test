@@ -44,7 +44,7 @@ pipeline {
                 slackSend (
                     channel: '#devops', 
                     color: '#439FE0', 
-                    message: slack_message, 
+                    message: start_message, 
                     teamDomain: slackParams.teamDomain, 
                     tokenCredentialId: slackParams.tokenCredentialId
                 )
