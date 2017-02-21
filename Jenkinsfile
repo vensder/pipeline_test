@@ -1,12 +1,10 @@
 #!/usr/bin/env groovy
 
-@Library('jenkins_scripts') _
+@Library('jenkins_lib') _
 
-def slack_message = "Started ${env.JOB_NAME} <${env.BUILD_URL}|#${env.BUILD_NUMBER}>" + "\n" +
+def start_message = "Started ${env.JOB_NAME} <${env.BUILD_URL}|#${env.BUILD_NUMBER}>" + "\n" +
             "<${env.RUN_DISPLAY_URL}|Pipeline details>" + "\n" +
             "<${env.JOB_DISPLAY_URL}|Pipeline activity>"          
-//def allBranches = scm.branches
-//def gitBranch = scm.branches[0].name
 
 pipeline {
     agent {
@@ -37,7 +35,6 @@ pipeline {
                 )
                 echo "Env vars is: ${env.NODE_NAME}, ${env.BRANCH_NAME}, ${env.GIT_URL}"
                 sh 'echo "printenv is: $(printenv)"'
-                //echo allBranches
             }
         }
         stage('Build') {
