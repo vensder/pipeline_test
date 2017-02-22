@@ -44,7 +44,9 @@ pipeline {
                 ansiColor('xterm') {
                     sh 'printenv'
                 }
-                sh 'echo "df is: $(df -h)"'
+                print "$environment"
+                print "$result"
+                print "$completed"
             }
         }
     }
