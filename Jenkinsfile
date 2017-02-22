@@ -44,8 +44,10 @@ pipeline {
                     tokenCredentialId: slackParams.tokenCredentialId
                 )
                 ansiColor('xterm') {
-                    sh 'printenv'
-                    sh 'printenv | wc -l'
+                    sh '''#!/usr/bin/env bash
+ls -la /var/jenkins_home/logs/audit/
+cat /var/jenkins_home/logs/audit/audit-*.log
+'''
                 }
             }
         }
