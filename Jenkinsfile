@@ -7,7 +7,7 @@ def start_message = "Started ${env.JOB_NAME} <${env.BUILD_URL}|#${env.BUILD_NUMB
             "<${env.JOB_DISPLAY_URL}|Pipeline activity>"          
 
 pipeline {
-    agent { any }
+    agent any
     environment {
         MY_VAR = 'DEFINE_MY_ENV_VARIABLE'
     }
