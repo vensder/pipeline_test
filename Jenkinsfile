@@ -2,10 +2,10 @@
 
 import hudson.model.*
 import hudson.EnvVars
-import groovy.json.JsonSlurperClassic
-import groovy.json.JsonBuilder
-import groovy.json.JsonOutput
-import java.net.URL
+//import groovy.json.JsonSlurperClassic
+//import groovy.json.JsonBuilder
+//import groovy.json.JsonOutput
+//import java.net.URL
 //def my_env = System.getenv()
 def my_build_number = Job.getVariable("BUILD_NUMBER")
 
