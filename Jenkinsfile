@@ -1,5 +1,13 @@
 #!/usr/bin/env groovy
 
+import hudson.model.*
+import hudson.EnvVars
+import groovy.json.JsonSlurperClassic
+import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
+import java.net.URL
+def my_env = System.getenv()
+
 @Library('jenkins_lib') _
 
 def start_message = "Started ${env.JOB_NAME} <${env.BUILD_URL}|#${env.BUILD_NUMBER}>" + "\n" +
@@ -13,15 +21,17 @@ pipeline {
         SLACK_SWITCH = 'OFF' // ON or OFF
     }
     stages {
-        if(env.SLACK_SWITCH=="ON") {
+/*        if(env.SLACK_SWITCH=="ON") {
             stage('To send or not to send to slack') {
                 steps{
                     sendToSlack('Zero stage')
                 }
             }
         }
+*/
         stage('Checkout') {
             steps {
+                print my_env
                 sendToSlack()
                 sendToSlack('Checkout stage', '#devops', '#ABCDEF')
                 checkout(
