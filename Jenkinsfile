@@ -30,13 +30,10 @@ pipeline {
                     ]
                 )
                 echo "Env vars is: ${env.NODE_NAME}, ${env.BRANCH_NAME}, ${env.GIT_URL}"
-                sh 'echo "printenv is: $(printenv)"'
             }
         }
         stage('Build') {
             steps {
-                echo slackParams.teamDomain
-                echo slackParams.tokenCredentialId
                 slackSend (
                     channel: '#devops', 
                     color: '#439FE0', 
@@ -44,11 +41,9 @@ pipeline {
                     teamDomain: slackParams.teamDomain, 
                     tokenCredentialId: slackParams.tokenCredentialId
                 )
-                sh 'echo "LABEL is: $LABEL"'
-                sh 'echo "NODE_LABELS is: $NODE_LABELS"'
-                sh 'echo "hostname is $(hostname)"'
-                sh 'echo "HOME is: $HOME"'
-                sh 'echo "PWD is: $(pwd)"'
+                ansiColor('xterm') {
+                    sh 'printenv'
+                }
                 sh 'echo "df is: $(df -h)"'
             }
         }
