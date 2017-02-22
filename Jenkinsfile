@@ -9,9 +9,15 @@ def start_message = "Started ${env.JOB_NAME} <${env.BUILD_URL}|#${env.BUILD_NUMB
 pipeline {
     agent any
     environment {
-        MY_VAR = 'DEFINE_MY_ENV_VARIABLE'
+        MY_VAR = 'DEFINE_MY_ENV_VARIABLE_HERE'
+        SLACK_SWITCH = 'OFF' // ON or OFF
     }
     stages {
+        stage('To send or not to send to slack') {
+            if(env.SLACK_SWITCH=="ON") {
+                sendToSlack('Zero stage')
+            }
+        }
         stage('Checkout') {
             steps {
                 sendToSlack()
