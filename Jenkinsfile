@@ -31,6 +31,7 @@ pipeline {
                 )
                 echo "Env vars is: ${env.NODE_NAME}, ${env.BRANCH_NAME}, ${env.GIT_URL}"
                 sh 'printenv'
+                sh 'printenv | wc -l'
             }
         }
         stage('Build') {
@@ -44,6 +45,7 @@ pipeline {
                 )
                 ansiColor('xterm') {
                     sh 'printenv'
+                    sh 'printenv | wc -l'
                 }
             }
         }
@@ -51,6 +53,7 @@ pipeline {
     post {
         always {
             sh 'printenv'
+            sh 'printenv | wc -l'
         }
         success {
             sendToSlack ('Pipeline finished successfully','#devops', 'good')
