@@ -7,7 +7,8 @@ import hudson.EnvVars
 //import groovy.json.JsonOutput
 //import java.net.URL
 //def my_env = System.getenv()
-def my_build_number = Job.getVariable("BUILD_NUMBER")
+//def my_build_number = Job.getVariable("BUILD_NUMBER")
+def myVar = build.getEnvironment(listener).get('BUILD_NUMBER')
 
 
 @Library('jenkins_lib') _
@@ -33,8 +34,13 @@ pipeline {
 */
         stage('Checkout') {
             steps {
-                echo 'Job.getVariable("BUILD_NUMBER")'
-                print my_build_number
+                script {
+                    //?
+                }
+                //echo 'Job.getVariable("BUILD_NUMBER")'
+                //print my_build_number
+                echo 'print myVar:'
+                print myVar
                 sendToSlack()
                 sendToSlack('Checkout stage', '#devops', '#ABCDEF')
                 checkout(
