@@ -14,8 +14,12 @@ pipeline {
     }
     stages {
         stage('To send or not to send to slack') {
-            if(env.SLACK_SWITCH=="ON") {
-                sendToSlack('Zero stage')
+            steps{
+                node {
+                    if(env.SLACK_SWITCH=="ON") {
+                        sendToSlack('Zero stage')
+                    }
+                }
             }
         }
         stage('Checkout') {
