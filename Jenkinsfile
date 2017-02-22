@@ -30,6 +30,7 @@ pipeline {
                     ]
                 )
                 echo "Env vars is: ${env.NODE_NAME}, ${env.BRANCH_NAME}, ${env.GIT_URL}"
+                sh 'printenv'
             }
         }
         stage('Build') {
@@ -51,6 +52,9 @@ pipeline {
         }
     }
     post {
+        always {
+            sh 'printenv'
+        }
         success {
             sendToSlack ('Pipeline finished successfully','#devops', 'good')
         }
