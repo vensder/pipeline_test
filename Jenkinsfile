@@ -6,7 +6,7 @@ import groovy.json.JsonSlurperClassic
 import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 import java.net.URL
-def my_env = System.getenv()
+//def my_env = System.getenv()
 
 @Library('jenkins_lib') _
 
@@ -31,7 +31,7 @@ pipeline {
 */
         stage('Checkout') {
             steps {
-                print my_env
+                print env
                 sendToSlack()
                 sendToSlack('Checkout stage', '#devops', '#ABCDEF')
                 checkout(
