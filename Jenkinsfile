@@ -45,9 +45,6 @@ pipeline {
                 ansiColor('xterm') {
                     sh 'printenv'
                 }
-                print manager.build.number
-                //print result
-                //print completed
             }
         }
     }
