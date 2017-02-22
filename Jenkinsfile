@@ -31,7 +31,8 @@ pipeline {
 */
         stage('Checkout') {
             steps {
-                print env
+                echo 'Job.getVariable("BUILD_NUMBER")'
+                print Job.getVariable("BUILD_NUMBER")
                 sendToSlack()
                 sendToSlack('Checkout stage', '#devops', '#ABCDEF')
                 checkout(
